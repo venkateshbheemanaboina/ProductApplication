@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #007BFF;
+            text-align: center;
+        }
+
+        label {
+            color: #495057;
+        }
+
+        button {
+            margin-top: 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #error-message {
+            color: #dc3545;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .registration-btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .registration-btn {
+            background-color: #28a745;
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .registration-btn:hover {
+            background-color: #218838;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            var userId = document.getElementById('userId').value;
+            var userPassword = document.getElementById('userPassword').value;
+
+            var errorMessage = '';
+
+            if (userId.trim() === '' || userPassword.trim() === '') {
+                errorMessage += 'User ID and Password are required.';
+            }
+
+            if (errorMessage !== '') {
+                document.getElementById('error-message').innerHTML = errorMessage;
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+
+<!-- Bootstrap Container -->
+<div class="container">
+    <div class="login-container">
+        <h2>User Login</h2>
+        <div id="error-message"></div>
+        <form action="./LogInServlet" method="post" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="userId">User ID:</label>
+                <input type="text" class="form-control" id="userId" name="userId" required>
+            </div>
+
+            <div class="form-group">
+                <label for="userPassword">Password:</label>
+                <input type="password" class="form-control" id="userPassword" name="userPassword" required>
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <div class="registration-btn-container">
+            <a href="UserForm.html" class="btn registration-btn">Register</a>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.1/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

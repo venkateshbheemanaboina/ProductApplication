@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            margin-bottom: 8px;
+        }
+
+        button {
+            margin-top: 20px;
+        }
+
+        #error-message {
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        .login-btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .register-btn {
+            background-color: #28a745;
+            color: #ffffff;
+        }
+
+        .register-btn:hover {
+            background-color: #218838;
+        }
+
+        .login-btn {
+            margin-top: 10px;
+            background-color: #007bff;
+            color: #ffffff;
+        }
+
+        .login-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            var userName = document.getElementById('userName').value;
+            var userPhone = document.getElementById('userPhone').value;
+            var userMail = document.getElementById('userMail').value;
+            var userId = document.getElementById('userId').value;
+            var userPassword = document.getElementById('userPassword').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+
+            var errorMessage = '';
+
+            if (userName.trim() === '' || userPhone.trim() === '' || userMail.trim() === '' || userId.trim() === '' || userPassword.trim() === '' || confirmPassword.trim() === '') {
+                errorMessage += 'All fields are required.<br>';
+            }
+
+            if (userName === userId) {
+                errorMessage += 'User Name and User ID should be different.<br>';
+            }
+
+            // Password validation (minimum length)
+            if (userPassword.length < 8) {
+                errorMessage += 'Password should be at least 8 characters long.<br>';
+            }
+
+            // Check if passwords match
+            if (userPassword !== confirmPassword) {
+                errorMessage += 'Passwords do not match.<br>';
+            }
+
+            if (errorMessage !== '') {
+                document.getElementById('error-message').innerHTML = errorMessage;
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+
+<!-- Bootstrap Container -->
+<div class="container mt-5">
+    <form id="registrationForm" action="./UserRegisterServlet" method="post" onsubmit="return validateForm()">
+        <div id="error-message"></div>
+
+        <div class="form-group">
+            <label for="userName">User Name:</label>
+            <input type="text" class="form-control" id="userName" name="userName" required>
+        </div>
+
+        <div class="form-group">
+            <label for="userPhone">User Phone:</label>
+            <input type="tel" class="form-control" id="userPhone" name="userPhone" required>
+        </div>
+
+        <div class="form-group">
+            <label for="userMail">User Mail:</label>
+            <input type="email" class="form-control" id="userMail" name="userMail" required>
+        </div>
+
+        <div class="form-group">
+            <label for="userId">User ID:</label>
+            <input type="text" class="form-control" id="userId" name="userId" required>
+        </div>
+
+        <div class="form-group">
+            <label for="userPassword">User Password:</label>
+            <input type="password" class="form-control" id="userPassword" name="userPassword" required>
+        </div>
+
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+        </div>
+
+        <button type="submit" class="btn btn-success btn-block register-btn">Register</button>
+
+        <div class="login-btn-container">
+            <a href="LogIn.html" class="btn btn-outline-primary btn-block login-btn">Login</a>
+        </div>
+    </form>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.1/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
